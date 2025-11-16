@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VMHC Community Connection Guide (Greater Victoria)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f7f7fb;--paper:#ffffff;--ink:#0b0b11;--muted:#555b66;--line:#e6e6ee;--accent:#0ea5e9;--accent-2:#6366f1;--chip:#eef7ff;--good:#10b981;--warning:#f59e0b;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6;background:var(--bg);color:var(--ink)}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1150px;margin:0 auto;padding:0 20px}
+
+    /* HERO */
+    header.hero{position:relative;overflow:hidden;min-height:54vh;display:grid;place-items:center;color:#0b0b11}
+    header.hero .backdrop{position:absolute;inset:0;background:radial-gradient(ellipse at 10% 0%, rgba(255,255,255,.75), rgba(255,255,255,.6) 40%, rgba(255,255,255,.4) 60%, rgba(255,255,255,.2) 80%)},
+    header.hero::before{content:"";position:absolute;inset:0;background:url('https://source.unsplash.com/1600x900/?victoria,harbour') center/cover no-repeat;filter:saturate(105%) contrast(105%) brightness(0.92)}
+    header.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.85) 60%, rgba(255,255,255,1))}
+    .hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:20px;padding:72px 0 48px}
+    .title{font-weight:800;font-size:clamp(28px,5vw,48px);letter-spacing:-0.02em;margin:0}
+    .subtitle{color:var(--muted);max-width:60ch;margin-top:10px}
+
+    /* NAV */
+    nav.top{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid var(--line)}
+    nav.top .wrap{display:flex;gap:14px;align-items:center;justify-content:space-between;padding:10px 0}
+    .nav-links{display:flex;flex-wrap:wrap;gap:10px}
+    .nav-links a{padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:#fff}
+
+    /* LEGEND */
+    .legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+    .chip{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--paper);font-size:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+    .chip .dot{width:10px;height:10px;border-radius:50%}
+    .dot.free{background:var(--good)}
+    .dot.under{background:var(--warning)}
+    .dot.drop{background:var(--accent)}
+    .dot.access{background:var(--accent-2)}
+    .dot.transit{background:#111827}
+
+    /* SECTION LAYOUT */
+    section{scroll-margin-top:90px}
+    h2.section-title{font-size:clamp(22px,3.5vw,30px);margin:28px 0 8px 0}
+    p.lead{color:var(--muted);margin:0 0 18px 0}
+    .section-banner{margin:10px 0 18px 0}
+    .section-banner img{width:100%;height:240px;object-fit:cover;border-radius:16px;border:1px solid var(--line);box-shadow:0 6px 22px rgba(0,0,0,.06)}
+
+    /* GRIDS & CARDS */
+    .grid{display:grid;gap:18px}
+    @media(min-width:720px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}}
+    .card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:10px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+    .card h3{font-size:18px;margin:0}
+    .meta{color:var(--muted);font-size:14px}
+    .badges{display:flex;flex-wrap:wrap;gap:8px}
+    .badge{font-size:12px;padding:4px 8px;border-radius:999px;background:var(--chip);border:1px solid #cae9ff}
+
+    .actions{display:flex;gap:8px;margin-top:6px}
+    .btn{display:inline-block;padding:8px 10px;border-radius:12px;border:1px solid var(--line);background:#fff}
+    .btn.primary{border-color:transparent;background:var(--ink);color:#fff}
+
+    .divider{height:1px;background:var(--line);margin:34px 0}
+    .note{font-size:13px;color:var(--muted)}
+
+    /* PHOTO STRIP */
+    .photo-strip{background:linear-gradient(180deg,#fff, #f8fbff)}
+    .strip{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;padding:18px 0}
+    .strip img{width:100%;height:120px;object-fit:cover;border-radius:12px;border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.05)}
+    @media(max-width:900px){.strip{grid-template-columns:repeat(3,1fr)}.strip img{height:110px}}
+
+    /* CRISIS */
+    .crisis{background:#0b0b11;color:#fff}
+    .crisis .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center;padding:10px}
+    .tag{font-weight:600}
+
+    footer{border-top:1px solid var(--line);background:#fff}
+    .small{font-size:12px;color:var(--muted)}
+    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;background:#f3f4f6;border:1px solid #e5e7eb;border-bottom-width:2px;border-radius:6px;padding:2px 6px;font-size:12px}
+
+    /* print */
+    @media print{nav.top, .crisis, .actions .btn, .note.hide-print, .photo-strip{display:none!important} .card{break-inside:avoid}}
+  </style>
+  <script>
+    function mapLink(addr){return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(addr)}
+    function copyText(txt){navigator.clipboard.writeText(txt).then(()=>alert('Copied to clipboard'))}
+  </script>
+</head>
+<body>
+  <nav class="top">
+    <div class="container wrap">
+      <strong>VMHC Guide</strong>
+      <div class="nav-links">
+        <a href="#legend">Legend</a>
+        <a href="#lgbtq">2SLGBTQIA+</a>
+        <a href="#community">Community Centres</a>
+        <a href="#activities">Activities & Games</a>
+        <a href="#food">Foods/Cafés</a>
+        <a href="#arts">Arts & Outings</a>
+        <a href="#books">Books & Media</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" role="banner" aria-label="VMHC Community Connection Guide hero">
+    <div class="backdrop" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <div>
+        <h1 class="title">VMHC Community Connection Guide</h1>
+        <p class="subtitle">Low‑ or no‑cost places to meet people, move your body, learn something new, and build community across Greater Victoria.</p>
+        <div class="legend" id="legend" aria-label="Legend">
+          <span class="chip"><span class="dot free" aria-hidden="true"></span> Free</span>
+          <span class="chip"><span class="dot under" aria-hidden="true"></span> Under $20</span>
+          <span class="chip"><span class="dot drop" aria-hidden="true"></span> Drop‑in friendly</span>
+          <span class="chip"><span class="dot access" aria-hidden="true"></span> Accessible</span>
+          <span class="chip"><span class="dot transit" aria-hidden="true"></span> Transit‑friendly</span>
+        </div>
+        <p class="note" style="margin-top:10px">Tip: Press <span class="kbd">Ctrl/⌘+F</span> to quickly find a place by name.</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="crisis">
+    <div class="container row">
+      <span class="tag">Need support now?</span>
+      <span>9‑8‑8 (call/text) • Island Crisis Line 1‑888‑494‑3888 • Text 250‑800‑3806 (6–10 pm) • <a href="https://vicrisis.ca" style="color:#93c5fd">vicrisis.ca</a></span>
+    </div>
+  </div>
+
+  <section class="photo-strip" aria-label="Community photo strip for calming vibe">
+    <div class="container strip">
+      <img src="https://source.unsplash.com/400x300/?victoria,inner%20harbour" alt="Victoria Inner Harbour at dusk" loading="lazy"/>
+      <img src="https://source.unsplash.com/400x300/?park,trees,bench" alt="Shaded park bench and trees" loading="lazy"/>
+      <img src="https://source.unsplash.com/400x300/?library,books" alt="Library shelves with books" loading="lazy"/>
+      <img src="https://source.unsplash.com/400x300/?community,people" alt="Neighbors chatting at a community event" loading="lazy"/>
+      <img src="https://source.unsplash.com/400x300/?art,gallery" alt="Art gallery wall with paintings" loading="lazy"/>
+      <img src="https://source.unsplash.com/400x300/?coffee,cafe" alt="Cozy café table and mug" loading="lazy"/>
+    </div>
+  </section>
+  <main class="container">
+    <section aria-labelledby="lgbtq-title" id="lgbtq">
+      $1
+      <figure class="section-banner"><img src="https://source.unsplash.com/1200x400/?pride,community" alt="Pride flags and community gathering" loading="lazy"/></figure>
+      <p class="lead">Clubs, events, and recurring gatherings (many via Instagram) that welcome queer and trans community and allies.</p>
+      <div class="grid">
+        <article class="card">
+          <h3>@fruity.agenda.yyj</h3>
+          <p class="meta">Queer events calendar; partners with local orgs; can help plan inclusive events.</p>
+          <div class="badges"><span class="badge">social</span><span class="badge">recurring</span></div>
+        </article>
+        <article class="card">
+          <h3>@dykesnationuvic</h3>
+          <p class="meta">UVic‑based but open to non‑students; diverse events; get involved by attending or helping organize.</p>
+          <div class="badges"><span class="badge">social</span><span class="badge">welcoming</span></div>
+        </article>
+        <article class="card">
+          <h3>@queeropenstagevic</h3>
+          <p class="meta">Monthly open stage (3rd Wed) spotlighting queer artists; allies welcome to watch or volunteer.</p>
+          <div class="badges"><span class="badge">by‑donation</span><span class="badge">arts</span></div>
+        </article>
+        <article class="card">
+          <h3>@dykenightyyj</h3>
+          <p class="meta">Low‑key weekly hangs: billiards, boardgames, karaoke, and more.</p>
+          <div class="badges"><span class="badge">drop‑in</span></div>
+        </article>
+        <article class="card">
+          <h3>@queersandbeersyyj</h3>
+          <p class="meta">Monthly social at local craft spots.</p>
+          <div class="badges"><span class="badge">social</span></div>
+        </article>
+        <article class="card">
+          <h3>@queercrafternoon</h3>
+          <p class="meta">Free, all‑ages monthly craft time; sign up for a free kit via Linktree.</p>
+          <div class="badges"><span class="badge">free</span><span class="badge">arts</span></div>
+        </article>
+        <article class="card">
+          <h3>@vanisleqbc</h3>
+          <p class="meta">Vancouver Island Queer Bird Club — birding meetups for curious queers and allies.</p>
+          <div class="badges"><span class="badge">free</span><span class="badge">outdoors</span></div>
+        </article>
+        <article class="card">
+          <h3>@vicqueerpickle</h3>
+          <p class="meta">Casual pickleball meetups; no experience needed (bring a paddle if you can).</p>
+          <div class="badges"><span class="badge">drop‑in</span><span class="badge">under $20</span></div>
+        </article>
+        <article class="card">
+          <h3>@victoriaqueerboxing</h3>
+          <p class="meta">Donation‑based queer boxing at Fernwood NRG (Tues 7:30 pm).</p>
+          <div class="badges"><span class="badge">by‑donation</span><span class="badge">movement</span></div>
+        </article>
+        <article class="card">
+          <h3>@queersoccervic</h3>
+          <p class="meta">Pickup soccer by and for queer/2S folks and allies.</p>
+          <div class="badges"><span class="badge">outdoors</span></div>
+        </article>
+        <article class="card">
+          <h3>@vicqueerrunclub</h3>
+          <p class="meta">A safe space to move energy together; monthly schedule pinned.</p>
+          <div class="badges"><span class="badge">free</span><span class="badge">movement</span></div>
+        </article>
+        <article class="card">
+          <h3>@camasbooks</h3>
+          <p class="meta">Not‑for‑profit, collectively owned community bookstore & space; hosts queer events.</p>
+        </article>
+        <article class="card">
+          <h3>@queerbookclubvictoria</h3>
+          <p class="meta">Meets the third Saturday monthly; inclusive and low‑pressure.</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section aria-labelledby="community-title" id="community">
+      $1
+      <figure class="section-banner"><img src="https://source.unsplash.com/1200x400/?community,centre" alt="Community centre hallway with natural light" loading="lazy"/></figure>
+      <p class="lead">Open, welcoming gathering spaces with low‑cost or free programs. Check each site for current hours.</p>
+      <div class="grid">
+        <!-- Page 6 list -->
+        <article class="card">
+          <h3>Fernwood Community Centre</h3>
+          <p class="meta">1240 Gladstone Ave • (250) 381‑1552</p>
+          <div class="actions">
+            <a class="btn" href="http://www.fernwoodnrg.ca/neighbourhood/fernwood-community-centre/" target="_blank" rel="noreferrer">Website</a>
+            <a class="btn" href="javascript:void(0)" onclick="location.href=mapLink('1240 Gladstone Ave, Victoria BC')">Map</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Quadra Village Community Centre</h3>
+          <p class="meta">901 Kings Rd • (250) 388‑7696</p>
+          <div class="actions">
+            <a class="btn" href="https://www.qvcc.ca/" target="_blank">Website</a>
+            <a class="btn" href="javascript:void(0)" onclick="location.href=mapLink('901 Kings Rd, Victoria BC')">Map</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>James Bay Community School Centre</h3>
+          <p class="meta">140 Oswego St • (250) 389‑1470</p>
+          <div class="actions">
+            <a class="btn" href="https://www.jamesbaycentre.ca/" target="_blank">Website</a>
+            <a class="btn" href="javascript:void(0)" onclick="location.href=mapLink('140 Oswego St, Victoria BC')">Map</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Fairfield Gonzales Community Association</h3>
+          <p class="meta">1330 Fairfield Rd • (250) 382‑4604</p>
+          <div class="actions">
+            <a class="btn" href="https://fairfieldcommunity.ca/adult-programs/recreation/" target="_blank">Programs</a>
+            <a class="btn" href="javascript:void(0)" onclick="location.href=mapLink('1330 Fairfield Rd, Victoria BC')">Map</a>
+          </div>
+        </article>
+        <!-- Page 7 list -->
+        <article class="card">
+          <h3>Oaklands Community Association</h3>
+          <p class="meta">#1‑2827 Belmont Ave • (250) 370‑9101</p>
+          <div class="actions">
+            <a class="btn" href="https://oca.recdesk.com/Community/calendar/indexembed" target="_blank">Calendar</a>
+            <a class="btn" href="javascript:void(0)" onclick="location.href=mapLink('2827 Belmont Ave, Victoria BC')">Map</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Burnside Gorge Community Centre</h3>
+          <p class="meta">471 Cecelia Rd • (250) 388‑5251</p>
+          <div class="actions">
+            <a class="btn" href="https://burnsidegorge.ca/health-and-wellness/" target="_blank">Programs</a>
+            <a class="btn" href="javascript:void(0)" onclick="location.href=mapLink('471 Cecelia Rd, Victoria BC')">Map</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Victoria Native Friendship Centre</h3>
+          <p class="meta">231 Regina Ave • (250) 384‑3211</p>
+          <div class="actions">
+            <a class="btn" href="https://vnfc.ca/" target="_blank">Website</a>
+            <a class="btn" href="javascript:void(0)" onclick="location.href=mapLink('231 Regina Ave, Victoria BC')">Map</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Cook Street Village Activity Centre</h3>
+          <p class="meta">380 Cook St • (250) 384‑6542</p>
+          <div class="actions">
+            <a class="btn" href="https://www.cookstreetvillageactivitycentre.com" target="_blank">Website</a>
+            <a class="btn" href="javascript:void(0)" onclick="location.href=mapLink('380 Cook St, Victoria BC')">Map</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section aria-labelledby="activities-title" id="activities">
+      $1
+      <figure class="section-banner"><img src="https://source.unsplash.com/1200x400/?games,boardgames" alt="Table with board games and friends smiling" loading="lazy"/></figure>
+      <p class="lead">Low‑ or no‑cost activities and social spots. Call ahead or check websites for current deals/hours.</p>
+      <div class="grid">
+        <article class="card"><h3>Interactivity Board Game Café</h3><p class="meta">Stay‑and‑play ~$7.50 • Family‑friendly + 19+ section • Cheap snacks</p></article>
+        <article class="card"><h3>Quazar’s Arcade</h3><p class="meta">Tokens ≈ $0.50 • Half‑price games 4–7 pm Wed/Thu/Fri • Free popcorn Fri/Sat</p></article>
+        <article class="card"><h3>Peacock Billiards</h3><p class="meta">Cheaper table rates before 7 pm</p></article>
+        <article class="card"><h3>Axe & Grind</h3><p class="meta">Mon Date Night 2 for $40 • Tue 2nd activity 50% off • Wed Student Night 20% off • Sun $40 day pass</p></article>
+        <article class="card"><h3>Flying Squirrel (Trampoline Park)</h3><p class="meta">$8/hr rate for people with special needs (call to confirm times)</p></article>
+        <article class="card"><h3>Vic West Skate Park</h3><p class="meta">Outdoor • Social • Free</p></article>
+        <article class="card"><h3>Haunted Manor: Mini‑Golf + Ping Pong Lounge</h3><p class="meta">Bookable parties & packages (private lounge + mini‑golf)</p></article>
+        <article class="card"><h3>Horror Escape</h3><p class="meta">Story‑driven escape rooms (~45–60 min); private groups; posted difficulty/scare levels</p></article>
+        <article class="card"><h3>Bowker Creek Walkway</h3><p class="meta">Mostly flat, creekside path linking parks & quiet streets • Benches & birds • Free</p></article>
+        <article class="card"><h3>Mt. Tolmie</h3><p class="meta">Drive‑up viewpoint • 360° vistas • Short rocky paths at summit</p></article>
+        <article class="card"><h3>Victoria Ballroom Dance Society</h3><p class="meta">Monthly evening socials ~$10–$12 with newcomer mixers</p></article>
+        <article class="card"><h3>Victoria Edelweiss</h3><p class="meta">Dance nights, choir, cultural meals</p></article>
+        <article class="card"><h3>SingYourJoy (16–29)</h3><p class="meta">Non‑auditioned chorus; no fees</p></article>
+        <article class="card"><h3>Victoria Bug Zoo</h3><p class="meta">Open Wed 11–12; discounts for Indigenous visitors; occasional free long‑weekend entry</p></article>
+        <article class="card"><h3>Repair Café (Fairfield Community Place)</h3><p class="meta">1330 Fairfield Rd • 2–5 pm selected months (Dec/Feb/Apr/Jun/Aug/Oct) • Bring a small item</p></article>
+        <article class="card"><h3>Cineplex & Capitol 6 – Cheap Tuesdays</h3><p class="meta">Discounted movie tickets every Tuesday (Downtown Yates & Tillicum)</p></article>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section aria-labelledby="food-title" id="food">
+      $1
+      <figure class="section-banner"><img src="https://source.unsplash.com/1200x400/?coffee,food" alt="Coffee cups on a café table" loading="lazy"/></figure>
+      <div class="grid">
+        <article class="card"><h3>Virtuous Pie (530 Pandora Ave)</h3></article>
+        <article class="card"><h3>Chocolat & Co (703 Fort St)</h3><p class="meta">Cozy hot chocolate; 2‑min walk from Bay Centre</p></article>
+        <article class="card"><h3>Beacon Drive‑In</h3><p class="meta">Classic diner by Beacon Hill Park • Soft‑serve & comfort food</p></article>
+        <article class="card"><h3>Hecklers (Restaurant/Comedy Club)</h3><p class="meta">Wings Night Wed & Sun: $9 orders from 4 pm • Happy Hour daily 2–5 pm & 9–close</p></article>
+        <article class="card"><h3>Bin 4 Burger Lounge</h3><p class="meta">After 9 pm: buy any drink, get 50% off your burger (dine‑in only)</p></article>
+        <article class="card"><h3>Boom + Batten — Happy Hour (Inner Harbour)</h3><p class="meta">Daily 2–5 pm & 9–close • Drinks + shareables with waterfront views</p></article>
+        <article class="card"><h3>Nautical Nellies — Happy Hour (Inner Harbour)</h3><p class="meta">Daily 3–5:30 pm with drink specials & small plates (with beverage)</p></article>
+        <article class="card">
+          <h3>Ultimate Happy Hours (Victoria)</h3>
+          <p class="meta">Find current HH deals at <a href="https://www.ultimatehappyhours.com/" target="_blank" rel="noreferrer">ultimatehappyhours.com</a></p>
+        </article>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section aria-labelledby="arts-title" id="arts">
+      $1
+      <figure class="section-banner"><img src="https://source.unsplash.com/1200x400/?museum,gallery" alt="Museum interior with art exhibits" loading="lazy"/></figure>
+      <div class="grid">
+        <article class="card"><h3>Abkhazi Garden</h3><p class="meta">Heritage garden & teahouse; quiet paths & seasonal blooms</p></article>
+        <article class="card"><h3>Craigdarroch Castle</h3><p class="meta">1890s mansion museum; discounts for Indigenous, military, Access2, Canadian essential workers</p></article>
+        <article class="card"><h3>BC Parliament Buildings</h3><p class="meta">Free guided & self‑guided tours; beautiful architecture</p></article>
+        <article class="card"><h3>Beacon Hill Children’s Farm</h3><p class="meta">By‑donation farm; seasonal goat stampedes</p></article>
+        <article class="card"><h3>Emily Carr House</h3><p class="meta">By‑donation heritage home in James Bay</p></article>
+        <article class="card"><h3>Government House Gardens</h3></article>
+        <article class="card"><h3>Miniature World</h3><p class="meta">Indoor dioramas; playful & nostalgic</p></article>
+        <article class="card"><h3>Fisherman’s Wharf</h3><p class="meta">Floating docks, colourful houseboats; free to wander</p></article>
+        <article class="card"><h3>Art Gallery of Greater Victoria</h3><p class="meta">Free: Thu 5–9 pm & first Saturday monthly</p></article>
+        <article class="card"><h3>UVic Legacy Art Gallery (Downtown)</h3><p class="meta">Free admission; periodic art hives/workshops (Thu–Sat 10–4)</p></article>
+        <article class="card"><h3>Planet Earth Poetry (@ Russell Books, Fri 7:30 pm)</h3><p class="meta">Long‑running poetry night with open mic</p></article>
+        <article class="card"><h3>Tongues of Fire (@ Caffe Fantastico)</h3><p class="meta">Twice‑monthly spoken‑word open mic; $6–$10 sliding scale</p></article>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section aria-labelledby="books-title" id="books">
+      $1
+      <figure class="section-banner"><img src="https://source.unsplash.com/1200x400/?bookstore,books" alt="Bookstore shelves with warm lighting" loading="lazy"/></figure>
+      <div class="grid">
+        <article class="card"><h3>Russell Books</h3><p class="meta">Sidewalk sale titles from $1.99; lots of budget shelves</p></article>
+        <article class="card"><h3>Munro’s Books (Government St)</h3><p class="meta">Iconic independent bookstore in a heritage space</p></article>
+        <article class="card"><h3>Audio Video Replay</h3><p class="meta">Deals: $10 each or $30/4 • Movie bundles 3‑for‑$3 (3 days) or 5‑for‑$5 (5 days)</p></article>
+        <article class="card"><h3>Bolen Books (Hillside Mall)</h3><p class="meta">Book clubs & events; some offer discounted books</p></article>
+        <article class="card"><h3>Hermann’s Jazz Club</h3><p class="meta">All‑ages live jazz/blues; many shows ~$20–$35; some student pricing</p></article>
+        <article class="card"><h3>The Coda</h3><p class="meta">Live‑music venue (stairs access only)</p></article>
+        <article class="card"><h3>Curious Comics</h3><p class="meta">New comics Wednesdays; deals like $10/3; movie bundles</p></article>
+        <article class="card"><h3>ThriftCraft</h3><p class="meta">Creative‑reuse art supply shop (“thrift for artists”)</p></article>
+        <article class="card"><h3>Supreme Echo (Record Shop + Label)</h3><p class="meta">New & vintage LPs/45s; deep genre digs; buy‑sell‑trade</p></article>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 class="section-title">Contact Us</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Suicide Crisis Helpline (Canada)</h3>
+          <p class="meta">Call or text <strong>9‑8‑8</strong> anytime (nationwide)</p>
+        </article>
+        <article class="card">
+          <h3>Vancouver Island Crisis Line</h3>
+          <p class="meta"><strong>1‑888‑494‑3888</strong> (24/7) • Text <strong>250‑800‑3806</strong> 6–10 pm • Chat at <a href="https://vicrisis.ca" target="_blank" rel="noreferrer">vicrisis.ca</a></p>
+        </article>
+        <article class="card">
+          <h3>HealthLink BC (8‑1‑1)</h3>
+          <p class="meta">Speak with a nurse/dietitian/pharmacist • Interpretation available • 24/7</p>
+        </article>
+        <article class="card">
+          <h3>Trans Lifeline (Canada)</h3>
+          <p class="meta">Peer support by and for trans people • <strong>877‑330‑6366</strong></p>
+        </article>
+        <article class="card">
+          <h3>Esquimalt UPCC</h3>
+          <p class="meta">Open 8 am–8 pm, 7 days • Call <strong>1‑833‑688‑8722</strong> at opening for same‑day spot</p>
+        </article>
+        <article class="card">
+          <h3>VictimLink BC</h3>
+          <p class="meta">Call or text <strong>1‑800‑563‑0808</strong> (24/7) • Confidential • 110+ languages</p>
+        </article>
+      </div>
+      <p class="note" style="margin-top:8px">Email your project team to add updates or corrections. Hours and deals can change.</p>
+    </section>
+
+    <div class="divider"></div>
+
+  </main>
+
+  <footer>
+    <div class="container" style="padding:18px 0;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+      <div class="small">© <span id="yr"></span> VMHC Community Project • Print this page with <span class="kbd">Ctrl/⌘+P</span></div>
+      <div class="small"><a href="#top">Back to top ↑</a></div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('yr').textContent=new Date().getFullYear()</script>
+</body>
+</html>
